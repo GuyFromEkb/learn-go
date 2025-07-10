@@ -7,6 +7,8 @@ import (
 	"math/rand/v2"
 	"net/url"
 	"strconv"
+
+	"github.com/vinay03/chalk"
 )
 
 type UrlCredentials struct {
@@ -55,5 +57,9 @@ func (credentials *UrlCredentials) generatePassword() {
 }
 
 func (credentials *UrlCredentials) OutputCredentials() {
-	fmt.Println(credentials)
+
+	chalk.Yellow().Println(credentials.url)
+	chalk.Green().Println(credentials.login)
+	chalk.Cyan().Println(credentials.password)
+
 }
