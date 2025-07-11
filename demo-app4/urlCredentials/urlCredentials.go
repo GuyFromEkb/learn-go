@@ -12,9 +12,9 @@ import (
 )
 
 type UrlCredentials struct {
-	url      string
-	login    string
-	password string
+	Url      string
+	Login    string
+	Password string
 }
 
 func NewUrlCredentials(urlStr, login, password string) (*UrlCredentials, error) {
@@ -27,13 +27,13 @@ func NewUrlCredentials(urlStr, login, password string) (*UrlCredentials, error) 
 		return nil, errors.New("INVALID_URL")
 	}
 
-	userData.login = login
-	userData.url = urlStr
+	userData.Login = login
+	userData.Url = urlStr
 
 	if password == "" {
 		userData.generatePassword()
 	} else {
-		userData.password = password
+		userData.Password = password
 	}
 
 	return &userData, nil
@@ -53,13 +53,13 @@ func (credentials *UrlCredentials) generatePassword() {
 		passwordRune[i] = letterRunes[rndIdx]
 	}
 
-	credentials.password = string(passwordRune)
+	credentials.Password = string(passwordRune)
 }
 
 func (credentials *UrlCredentials) OutputCredentials() {
 
-	chalk.Yellow().Println(credentials.url)
-	chalk.Green().Println(credentials.login)
-	chalk.Cyan().Println(credentials.password)
+	chalk.Yellow().Println(credentials.Url)
+	chalk.Green().Println(credentials.Login)
+	chalk.Cyan().Println(credentials.Password)
 
 }
